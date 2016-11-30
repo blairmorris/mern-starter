@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {observer} from 'mobx-react';
 import './App.less';
 
-class App extends Component {
+@observer class App extends Component {
 	static propTypes = {
 		children: PropTypes.node
 	};
@@ -25,4 +25,4 @@ class App extends Component {
 	}
 }
 
-export default observer(App);
+export default App;
