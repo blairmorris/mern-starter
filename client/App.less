@@ -1,0 +1,33 @@
+html {
+	font-family: Lato, sans-serif;
+	height: 100%;
+	overflow: hidden;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+}
+
+#app-container {
+	height: 100vh;
+	display: flex;
+	flex-flow: column;
+	> header {
+		padding: 1rem;
+		font-size: 1.2rem;
+		font-weight: bold;
+		background-color: #222;
+		color: #eee;
+	}
+	> .content {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+	}
+	> footer {
+		padding: 1rem;
+		color: #eee;
+		background-color: #222;
+	}
+}
