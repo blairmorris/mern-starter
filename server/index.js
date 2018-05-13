@@ -11,6 +11,18 @@ const express = require('express'),
 const routes = require('./routes');
 const app = express();
 
+// Set native promises as mongoose promise
+mongoose.Promise = global.Promise;
+
+// MongoDB Connection
+mongoose.connect(serverConfig.mongoURL, (error) => {
+  if (error) {
+    console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
+    throw error;
+  }
+
+});
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 if (process.env.NODE_ENV !== 'production') {
