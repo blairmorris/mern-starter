@@ -1,5 +1,8 @@
 'use strict';
 
+import mongoose from 'mongoose';
+import serverConfig from './config';
+
 const express = require('express'),
 	bodyParser = require('body-parser'),
 	http = require('http'),
@@ -7,7 +10,6 @@ const express = require('express'),
 
 const routes = require('./routes');
 const app = express();
-const port = process.env.PORT || 8081;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -35,4 +37,4 @@ app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-app.listen(port, () => console.log('App listening on port ' + port));
+app.listen(serverConfig.port, () => console.log('App listening on port ' + serverConfig.port));
