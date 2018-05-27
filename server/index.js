@@ -2,6 +2,7 @@
 
 import mongoose from 'mongoose';
 import serverConfig from './config';
+var morgan = require('morgan')
 
 const express = require('express'),
 	bodyParser = require('body-parser'),
@@ -23,6 +24,7 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
 
 });
 
+app.use(morgan('combined'))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 if (process.env.NODE_ENV !== 'production') {
