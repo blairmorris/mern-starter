@@ -4,6 +4,7 @@ import { observer, Provider } from 'mobx-react';
 
 import App from './App';
 import Home from './views/Home';
+import Login from './views/auth/Login';
 
 class AppRouter extends Component {
 	static propTypes = {
@@ -19,6 +20,7 @@ class AppRouter extends Component {
 				<Router history={browserHistory}>
 					<Route path="/" component={App} >
 						<IndexRoute component={Home} />
+						<Route path="/login" component={Login} />
 					</Route>
 				</Router>
 			</Provider>
