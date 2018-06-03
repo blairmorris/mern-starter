@@ -11,6 +11,8 @@ Still lacking the M.
 	- MobX
 - Node 7.2+
 
+-bootstrap is in bootstrap branch
+
 ###Development:
 ```bash
 npm run dev
