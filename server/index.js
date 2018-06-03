@@ -1,5 +1,9 @@
 'use strict';
 
+import mongoose from 'mongoose';
+import serverConfig from './config';
+var morgan = require('morgan')
+
 const express = require('express'),
 	bodyParser = require('body-parser'),
 	http = require('http'),
@@ -7,8 +11,20 @@ const express = require('express'),
 
 const routes = require('./routes');
 const app = express();
-const port = process.env.PORT || 8081;
 
+// Set native promises as mongoose promise
+mongoose.Promise = global.Promise;
+
+// MongoDB Connection
+mongoose.connect(serverConfig.mongoURL, (error) => {
+  if (error) {
+    console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
+    throw error;
+  }
+
+});
+
+app.use(morgan('combined'))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 if (process.env.NODE_ENV !== 'production') {
@@ -35,4 +51,4 @@ app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-app.listen(port, () => console.log('App listening on port ' + port));
+app.listen(serverConfig.port, () => console.log('App listening on port ' + serverConfig.port));
