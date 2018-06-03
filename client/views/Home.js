@@ -1,9 +1,10 @@
-import React, {Component, PropTypes} from 'react';
-import {observable} from 'mobx';
-import {observer} from 'mobx-react';
+import React, { Component, PropTypes } from 'react';
+import { observable } from 'mobx';
+import { observer, inject } from 'mobx-react';
 
 import './Home.less';
 
+@inject("appStore")
 @observer class Home extends Component {
 	static contextTypes = {
 		appStore: PropTypes.object
@@ -12,12 +13,12 @@ import './Home.less';
 	@observable nameInput = '';
 
 	componentWillMount() {
-		const {appStore} = this.context;
+		const { appStore } = this.context;
 		appStore.loadNames();
 	}
 
 	render() {
-		const {appStore: {names = []}} = this.context;
+		const { appStore: { names = [] } } = this.context;
 
 		return (
 			<article id="home-container">
@@ -43,7 +44,7 @@ import './Home.less';
 	}
 
 	addName = () => {
-		const {appStore: {names = []}} = this.context;
+		const { appStore: { names = [] } } = this.context;
 		names.unshift(this.nameInput);
 		this.nameInput = '';
 	}
